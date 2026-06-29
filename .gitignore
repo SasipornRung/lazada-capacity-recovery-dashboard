@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.npm-cache/
+work/
+outputs/
+
+*.log
+*.tsbuildinfo
+.env
+.env.*
