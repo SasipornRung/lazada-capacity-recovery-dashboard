@@ -87,10 +87,10 @@ function Select<T extends string>({
   onChange: (value: T) => void;
 }) {
   return (
-    <label className="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+    <label className="min-w-0 flex flex-1 flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:min-w-40 lg:flex-none">
       {label}
       <select
-        className="h-10 min-w-40 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold normal-case tracking-normal text-slate-700 outline-none focus:border-blue-500"
+        className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold normal-case tracking-normal text-slate-700 outline-none focus:border-blue-500"
         value={value}
         onChange={(event) => onChange(event.target.value as T)}
       >
@@ -106,8 +106,8 @@ function Select<T extends string>({
 
 export function FilterBar({ filters, onChange, onReset }: FilterBarProps) {
   return (
-    <div className="flex items-end gap-3 border-b border-slate-200 bg-slate-50 px-6 py-3">
-      <div className="flex h-10 items-center gap-2 rounded-lg bg-slate-900 px-3 text-sm font-semibold text-white">
+    <div className="flex flex-wrap items-end gap-3 border-b border-slate-200 bg-slate-50 px-4 py-3 lg:px-6">
+      <div className="flex h-10 w-full items-center gap-2 rounded-lg bg-slate-900 px-3 text-sm font-semibold text-white sm:w-auto">
         <SlidersHorizontal size={16} />
         Filters
       </div>
@@ -138,7 +138,7 @@ export function FilterBar({ filters, onChange, onReset }: FilterBarProps) {
       />
 
       <button
-        className="ml-auto flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+        className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 hover:bg-slate-100 sm:w-auto lg:ml-auto"
         type="button"
         onClick={onReset}
       >

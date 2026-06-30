@@ -42,8 +42,8 @@ export function ThailandHubMap({
   const selectedHub = allHubs.find((hub) => hub.id === selectedHubId);
 
   return (
-    <div className="relative h-full min-h-[500px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-      <MapContainer center={[13.7, 101]} zoom={5} scrollWheelZoom zoomControl={false}>
+    <div className="relative h-full min-h-[360px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 sm:min-h-[440px] xl:min-h-[500px]">
+      <MapContainer center={[13.7, 101]} zoom={5} scrollWheelZoom={false} zoomControl={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -61,7 +61,7 @@ export function ThailandHubMap({
         <MapPan hub={selectedHub} />
       </MapContainer>
 
-      <div className="absolute left-4 top-4 z-[500] rounded-lg border border-slate-200 bg-white/95 px-3 py-2 shadow-panel backdrop-blur">
+      <div className="absolute left-3 top-3 z-[500] rounded-lg border border-slate-200 bg-white/95 px-3 py-2 shadow-panel backdrop-blur sm:left-4 sm:top-4">
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Active View
         </p>

@@ -14,7 +14,7 @@ export function HubDetailPanel({ hub }: HubDetailPanelProps) {
   const priority = getHubPriority(hub);
 
   return (
-    <aside className="dashboard-scrollbar h-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-panel">
+    <aside className="dashboard-scrollbar max-h-[720px] overflow-auto rounded-lg border border-slate-200 bg-white shadow-panel xl:h-full xl:max-h-none">
       <div className="sticky top-0 z-20 border-b border-slate-200 bg-white px-4 py-4">
         <div className="flex items-start justify-between gap-3">
           <div>

@@ -108,9 +108,9 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-100">
+    <div className="flex min-h-screen flex-col bg-slate-100 lg:h-screen lg:flex-row lg:overflow-hidden">
       <Sidebar activePage={activePage} onNavigate={setActivePage} />
-      <main className="flex min-w-0 flex-1 flex-col">
+      <main className="flex min-w-0 flex-1 flex-col lg:min-h-0">
         <Header
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -120,12 +120,12 @@ export default function App() {
 
         {activePage === "Overview" ? (
           <>
-            <div className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-3">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-3 border-b border-slate-200 bg-white px-4 py-3 lg:px-6 xl:flex-row xl:items-center xl:justify-between">
+              <div className="dashboard-scrollbar flex gap-2 overflow-x-auto pb-1 xl:overflow-visible xl:pb-0">
                 {viewModes.map((mode) => (
                   <button
                     key={mode}
-                    className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                    className={`shrink-0 rounded-lg px-3 py-2 text-sm font-semibold transition ${
                       activeMode === mode
                         ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
                         : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -138,7 +138,7 @@ export default function App() {
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 text-sm text-slate-600">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
                 <div className="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2">
                   <Activity className="text-blue-600" size={16} />
                   Ads recover capacity, not just leads
@@ -160,9 +160,9 @@ export default function App() {
               onReset={() => setFilters(defaultFilters)}
             />
 
-            <div className="dashboard-scrollbar flex-1 overflow-auto p-5">
-              <div className="grid h-[560px] grid-cols-[minmax(0,1fr)_390px] gap-5">
-                <div className="h-full min-h-0">
+            <div className="dashboard-scrollbar flex-1 overflow-auto p-3 lg:p-5">
+              <div className="grid gap-4 xl:h-[560px] xl:grid-cols-[minmax(0,1fr)_390px] xl:gap-5">
+                <div className="h-[430px] min-h-0 sm:h-[500px] xl:h-full">
                   <ThailandHubMap
                     hubs={filteredHubs}
                     allHubs={hubs}
@@ -183,7 +183,7 @@ export default function App() {
                 />
               </div>
 
-              <div className="mt-5 grid grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)_minmax(300px,0.75fr)] gap-5">
+              <div className="mt-5 grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)_minmax(300px,0.75fr)] xl:gap-5">
                 <HubRankingTable
                   hubs={filteredHubs}
                   selectedHubId={selectedHubId}
@@ -282,9 +282,9 @@ function PlaceholderPage({
   const content = pageContent[page];
 
   return (
-    <div className="dashboard-scrollbar flex-1 overflow-auto p-6">
+    <div className="dashboard-scrollbar flex-1 overflow-auto p-3 sm:p-6">
       <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-panel">
-        <div className="flex items-start justify-between gap-5">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
               {content.eyebrow}
@@ -318,7 +318,7 @@ function PlaceholderPage({
           </p>
         </div>
 
-        <div className="mt-6 grid grid-cols-4 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {content.cards.map((card) => (
             <div key={card} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
               <p className="text-sm font-bold text-slate-900">{card}</p>

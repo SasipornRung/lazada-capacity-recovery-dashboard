@@ -26,7 +26,7 @@ export function RecommendedActionCard({ hub }: RecommendedActionCardProps) {
         ))}
       </div>
 
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
         <div className="rounded-lg bg-blue-50 p-3">
           <p className="text-[10px] font-semibold uppercase tracking-wide text-blue-600">
             Quadrant

@@ -28,7 +28,7 @@ export function DiagnosisCard({ hub }: DiagnosisCardProps) {
         If the root cause is attrition, paid ads only refill a leaking bucket.
       </p>
 
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {items.map((item) => (
           <div key={item.label} className="rounded-lg bg-slate-50 p-2">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">

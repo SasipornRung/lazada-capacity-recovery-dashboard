@@ -38,8 +38,8 @@ interface SidebarProps {
 
 export function Sidebar({ activePage, onNavigate }: SidebarProps) {
   return (
-    <aside className="flex h-screen w-64 shrink-0 flex-col bg-navy-950 px-4 py-5 text-slate-200">
-      <div className="flex items-center gap-3 px-2">
+    <aside className="flex w-full shrink-0 flex-col bg-navy-950 px-3 py-3 text-slate-200 lg:h-screen lg:w-64 lg:px-4 lg:py-5">
+      <div className="flex items-center gap-3 px-1 lg:px-2">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
           <Truck size={22} />
         </div>
@@ -51,14 +51,14 @@ export function Sidebar({ activePage, onNavigate }: SidebarProps) {
         </div>
       </div>
 
-      <nav className="mt-8 space-y-1">
+      <nav className="dashboard-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1 lg:mt-8 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const active = item.label === activePage;
           return (
             <button
               key={item.label}
-              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition ${
+              className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition lg:w-full lg:gap-3 ${
                 active
                   ? "bg-blue-600 text-white shadow-lg shadow-blue-950/30"
                   : "text-slate-300 hover:bg-navy-800 hover:text-white"
@@ -73,7 +73,7 @@ export function Sidebar({ activePage, onNavigate }: SidebarProps) {
         })}
       </nav>
 
-      <div className="mt-auto rounded-lg border border-white/10 bg-white/5 p-4">
+      <div className="mt-auto hidden rounded-lg border border-white/10 bg-white/5 p-4 lg:block">
         <p className="text-xs uppercase tracking-wide text-slate-400">Data as of</p>
         <p className="mt-1 text-sm font-semibold text-white">May 31, 2025 23:59</p>
         <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">

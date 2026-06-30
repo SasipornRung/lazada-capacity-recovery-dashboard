@@ -1,6 +1,6 @@
 export function MapLegend() {
   return (
-    <div className="absolute bottom-4 left-4 z-[500] w-64 rounded-lg border border-slate-200 bg-white/95 p-3 text-xs shadow-panel backdrop-blur">
+    <div className="absolute bottom-3 left-3 z-[500] w-[min(calc(100%_-_1.5rem),16rem)] rounded-lg border border-slate-200 bg-white/95 p-3 text-xs shadow-panel backdrop-blur sm:bottom-4 sm:left-4 sm:w-64">
       <p className="text-sm font-bold text-slate-900">Map Legend</p>
 
       <div className="mt-3 grid grid-cols-2 gap-3">

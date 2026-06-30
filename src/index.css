@@ -14,12 +14,18 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  min-width: 1280px;
   background:
     radial-gradient(circle at top right, rgba(29, 110, 242, 0.12), transparent 26rem),
     #eef2f7;
+  overflow-x: hidden;
 }
 
 button,
@@ -37,7 +43,7 @@ select {
 }
 
 .leaflet-control-attribution {
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .leaflet-tooltip {

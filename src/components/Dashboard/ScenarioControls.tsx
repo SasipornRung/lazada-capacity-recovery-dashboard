@@ -15,7 +15,7 @@ export function ScenarioControls({
 }: ScenarioControlsProps) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-panel">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-bold text-slate-900">Scenario Simulation</p>
           <p className="mt-0.5 text-xs text-slate-500">
@@ -23,7 +23,7 @@ export function ScenarioControls({
           </p>
         </div>
         <button
-          className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+          className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
           type="button"
           onClick={onReset}
         >
@@ -32,7 +32,7 @@ export function ScenarioControls({
         </button>
       </div>
 
-      <div className="mt-4 grid grid-cols-4 gap-3">
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Slider
           label="Campaign uplift"
           min={1}

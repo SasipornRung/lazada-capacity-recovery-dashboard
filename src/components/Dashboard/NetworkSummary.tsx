@@ -20,7 +20,7 @@ export function NetworkSummary({ hubs }: NetworkSummaryProps) {
     : hubs.filter((hub) => hub.slaImpact === "High" || hub.urgency === "High").length;
 
   return (
-    <div className="absolute right-4 top-4 z-[500] w-72 rounded-lg border border-slate-200 bg-white/95 p-4 shadow-panel backdrop-blur">
+    <div className="absolute right-3 top-20 z-[500] w-[min(calc(100%_-_1.5rem),18rem)] rounded-lg border border-slate-200 bg-white/95 p-3 shadow-panel backdrop-blur sm:right-4 sm:top-4 sm:w-72 sm:p-4">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -35,7 +35,7 @@ export function NetworkSummary({ hubs }: NetworkSummaryProps) {
         </span>
       </div>
 
-      <div className="mt-4 grid gap-3">
+      <div className="mt-3 grid gap-2 sm:mt-4 sm:gap-3">
         <MetricLine label="Total Volume" value={`${formatNumber(totalVolume)} parcels/day`} />
         <MetricLine label="Total Hiring Gap" value={`${formatNumber(totalHiringGap)} workers`} />
         <MetricLine label="SLA at Risk" value={`${formatNumber(slaAtRisk)} hubs`} />
@@ -46,9 +46,9 @@ export function NetworkSummary({ hubs }: NetworkSummaryProps) {
 
 function MetricLine({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+    <div className="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2">
       <span className="text-xs font-semibold text-slate-500">{label}</span>
-      <span className="text-sm font-bold text-slate-900">{value}</span>
+      <span className="text-right text-xs font-bold text-slate-900 sm:text-sm">{value}</span>
     </div>
   );
 }

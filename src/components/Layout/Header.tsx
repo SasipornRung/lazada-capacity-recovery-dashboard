@@ -14,10 +14,10 @@ export function Header({
   onSearchSelect,
 }: HeaderProps) {
   return (
-    <header className="border-b border-slate-200 bg-white px-6 py-4">
-      <div className="flex items-start justify-between gap-5">
-        <div>
-          <h1 className="text-2xl font-bold leading-tight text-slate-950">
+    <header className="border-b border-slate-200 bg-white px-4 py-4 lg:px-6">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+        <div className="min-w-0 xl:max-w-[430px] 2xl:max-w-none">
+          <h1 className="text-xl font-bold leading-tight text-slate-950 sm:text-2xl">
             Recruitment Ads = Capacity Recovery System
           </h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -25,14 +25,14 @@ export function Header({
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 xl:flex-nowrap xl:justify-end">
+          <div className="relative min-w-0 flex-1 sm:flex-none">
             <Search
               className="pointer-events-none absolute left-3 top-2.5 text-slate-400"
               size={16}
             />
             <input
-              className="h-10 w-60 rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
+              className="h-10 w-full min-w-48 rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm outline-none transition focus:border-blue-500 focus:bg-white sm:w-60 xl:w-56"
               list="hub-search"
               placeholder="Search hub"
               value={searchQuery}
@@ -50,9 +50,10 @@ export function Header({
             </datalist>
           </div>
 
-          <div className="flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700">
+          <div className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border border-slate-200 bg-slate-50 px-3 text-xs font-semibold text-slate-700 sm:text-sm">
             <CalendarDays size={16} />
-            May 1 - May 31, 2025
+            <span className="hidden sm:inline">May 1 - May 31, 2025</span>
+            <span className="sm:hidden">May 2025</span>
           </div>
 
           <button

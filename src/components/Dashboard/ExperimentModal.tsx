@@ -34,9 +34,9 @@ export function ExperimentModal({ open, onClose }: ExperimentModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-slate-950/45 p-6">
-      <div className="w-full max-w-3xl rounded-lg bg-white shadow-2xl">
-        <div className="flex items-start justify-between border-b border-slate-200 px-6 py-4">
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-slate-950/45 p-3 sm:p-6">
+      <div className="max-h-[92vh] w-full max-w-3xl overflow-auto rounded-lg bg-white shadow-2xl">
+        <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-4 py-4 sm:px-6">
           <div>
             <p className="text-lg font-bold text-slate-950">
               Validation: Does the ads strategy actually work?
@@ -55,7 +55,7 @@ export function ExperimentModal({ open, onClose }: ExperimentModalProps) {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 p-6">
+        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 sm:p-6">
           {experiments.map((experiment) => (
             <div key={experiment.title} className="rounded-lg border border-slate-200 p-4">
               <p className="text-sm font-bold text-slate-900">{experiment.title}</p>
@@ -64,7 +64,7 @@ export function ExperimentModal({ open, onClose }: ExperimentModalProps) {
           ))}
         </div>
 
-        <div className="border-t border-slate-200 bg-orange-50 px-6 py-4 text-sm font-semibold text-orange-800">
+        <div className="border-t border-slate-200 bg-orange-50 px-4 py-4 text-sm font-semibold text-orange-800 sm:px-6">
           Any ad experiment should be evaluated downstream, not only by CTR or CPL.
           The winning creative at click level may produce worse retained workers.
         </div>

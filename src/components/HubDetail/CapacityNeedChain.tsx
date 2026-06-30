@@ -29,7 +29,7 @@ export function CapacityNeedChain({ hub }: CapacityNeedChainProps) {
         </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {items.map((item, index) => (
           <div
             key={item.label}
@@ -40,7 +40,7 @@ export function CapacityNeedChain({ hub }: CapacityNeedChainProps) {
             </p>
             <p className="mt-1 text-sm font-bold text-slate-900">{item.value}</p>
             {index < items.length - 1 ? (
-              <span className="absolute -right-2 top-1/2 z-10 -translate-y-1/2 text-xs font-bold text-slate-400">
+              <span className="absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 text-xs font-bold text-slate-400 sm:block">
                 {"->"}
               </span>
             ) : null}
