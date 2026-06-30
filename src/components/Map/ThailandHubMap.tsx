@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { useEffect, useRef } from "react";
+import { latLngBounds } from "leaflet";
+import { MapContainer, TileLayer, ZoomControl, useMap } from "react-leaflet";
 import type { Hub } from "../../data/hubs";
 import type { HubFlow } from "../../lib/calculations";
 import type { ViewMode } from "../../types";
@@ -19,14 +20,76 @@ interface ThailandHubMapProps {
 
 function MapPan({ hub }: { hub?: Hub }) {
   const map = useMap();
+  const previousHubId = useRef(hub?.id);
 
   useEffect(() => {
-    if (hub) {
-      map.flyTo([hub.lat, hub.lng], Math.max(map.getZoom(), 6), {
-        duration: 0.7,
-      });
+    if (!hub || previousHubId.current === hub.id) {
+      return;
     }
+
+    previousHubId.current = hub.id;
+    const isCompact = map.getContainer().clientWidth < 640;
+
+    map.flyTo([hub.lat, hub.lng], Math.max(map.getZoom(), isCompact ? 6 : 7), {
+      duration: 0.7,
+    });
   }, [hub, map]);
+
+  return null;
+}
+
+function MapAutoLayout({ hubs }: { hubs: Hub[] }) {
+  const map = useMap();
+  const firstLayout = useRef(true);
+  const previousHubSignature = useRef("");
+
+  useEffect(() => {
+    const container = map.getContainer();
+    const refreshSize = () => map.invalidateSize({ pan: false });
+
+    window.requestAnimationFrame(refreshSize);
+
+    const resizeObserver = new ResizeObserver(refreshSize);
+    resizeObserver.observe(container);
+    window.addEventListener("orientationchange", refreshSize);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("orientationchange", refreshSize);
+    };
+  }, [map]);
+
+  useEffect(() => {
+    const hubSignature = hubs.map((hub) => hub.id).join("|");
+    if (hubSignature === previousHubSignature.current) {
+      return;
+    }
+
+    previousHubSignature.current = hubSignature;
+
+    if (hubs.length === 0) {
+      return;
+    }
+
+    const isCompact = map.getContainer().clientWidth < 640;
+
+    if (hubs.length === 1) {
+      const [hub] = hubs;
+      map.setView([hub.lat, hub.lng], isCompact ? 6 : 7, {
+        animate: !firstLayout.current,
+      });
+      firstLayout.current = false;
+      return;
+    }
+
+    const visibleBounds = latLngBounds(hubs.map((hub) => [hub.lat, hub.lng]));
+    map.fitBounds(visibleBounds.pad(0.12), {
+      animate: !firstLayout.current,
+      maxZoom: isCompact ? 6 : 7,
+      padding: isCompact ? [18, 34] : [36, 36],
+    });
+    firstLayout.current = false;
+  }, [hubs, map]);
 
   return null;
 }
@@ -42,12 +105,22 @@ export function ThailandHubMap({
   const selectedHub = allHubs.find((hub) => hub.id === selectedHubId);
 
   return (
-    <div className="relative h-full min-h-[360px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 sm:min-h-[440px] xl:min-h-[500px]">
-      <MapContainer center={[13.7, 101]} zoom={5} scrollWheelZoom={false} zoomControl={false}>
+    <div className="relative h-full min-h-[420px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 sm:min-h-[480px] xl:min-h-[500px]">
+      <MapContainer
+        center={[13.7, 101]}
+        zoom={5}
+        scrollWheelZoom
+        touchZoom
+        doubleClickZoom
+        boxZoom
+        keyboard
+        zoomControl={false}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <ZoomControl position="topright" />
         <FlowLines flows={flows} hubs={allHubs} />
         {hubs.map((hub) => (
           <HubMarker
@@ -58,6 +131,7 @@ export function ThailandHubMap({
             onSelect={onSelectHub}
           />
         ))}
+        <MapAutoLayout hubs={hubs} />
         <MapPan hub={selectedHub} />
       </MapContainer>
 

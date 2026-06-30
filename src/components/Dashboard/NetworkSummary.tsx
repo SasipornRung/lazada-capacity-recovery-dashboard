@@ -20,7 +20,7 @@ export function NetworkSummary({ hubs }: NetworkSummaryProps) {
     : hubs.filter((hub) => hub.slaImpact === "High" || hub.urgency === "High").length;
 
   return (
-    <div className="absolute right-3 top-20 z-[500] w-[min(calc(100%_-_1.5rem),18rem)] rounded-lg border border-slate-200 bg-white/95 p-3 shadow-panel backdrop-blur sm:right-4 sm:top-4 sm:w-72 sm:p-4">
+    <div className="absolute right-4 top-4 z-[500] hidden w-72 rounded-lg border border-slate-200 bg-white/95 p-4 shadow-panel backdrop-blur md:block">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">

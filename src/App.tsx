@@ -120,12 +120,12 @@ export default function App() {
 
         {activePage === "Overview" ? (
           <>
-            <div className="flex flex-col gap-3 border-b border-slate-200 bg-white px-4 py-3 lg:px-6 xl:flex-row xl:items-center xl:justify-between">
-              <div className="dashboard-scrollbar flex gap-2 overflow-x-auto pb-1 xl:overflow-visible xl:pb-0">
+            <div className="flex items-center gap-2 border-b border-slate-200 bg-white px-3 py-2 sm:px-4 lg:px-6 xl:gap-3 xl:py-3">
+              <div className="dashboard-scrollbar flex min-w-0 flex-1 gap-2 overflow-x-auto pb-1 xl:overflow-visible xl:pb-0">
                 {viewModes.map((mode) => (
                   <button
                     key={mode}
-                    className={`shrink-0 rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                    className={`shrink-0 rounded-lg px-2.5 py-2 text-xs font-semibold transition sm:px-3 sm:text-sm ${
                       activeMode === mode
                         ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
                         : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -138,18 +138,19 @@ export default function App() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
-                <div className="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2">
+              <div className="flex shrink-0 items-center gap-2 text-sm text-slate-600 sm:gap-3">
+                <div className="hidden items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 sm:flex">
                   <Activity className="text-blue-600" size={16} />
                   Ads recover capacity, not just leads
                 </div>
                 <button
-                  className="flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 font-semibold text-white hover:bg-slate-800"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 font-semibold text-white hover:bg-slate-800 sm:w-auto sm:px-3 sm:py-2"
                   type="button"
                   onClick={() => setValidationOpen(true)}
+                  title="Validation"
                 >
                   <FlaskConical size={16} />
-                  Validation
+                  <span className="hidden sm:inline">Validation</span>
                 </button>
               </div>
             </div>
@@ -161,8 +162,8 @@ export default function App() {
             />
 
             <div className="dashboard-scrollbar flex-1 overflow-auto p-3 lg:p-5">
-              <div className="grid gap-4 xl:h-[560px] xl:grid-cols-[minmax(0,1fr)_390px] xl:gap-5">
-                <div className="h-[430px] min-h-0 sm:h-[500px] xl:h-full">
+              <div className="grid gap-4 xl:h-[calc(100vh-19rem)] xl:min-h-[420px] xl:max-h-[560px] xl:grid-cols-[minmax(0,1fr)_390px] xl:gap-5">
+                <div className="h-[62svh] min-h-[420px] max-h-[560px] min-w-0 sm:h-[56svh] sm:min-h-[480px] xl:h-full xl:max-h-none xl:min-h-0">
                   <ThailandHubMap
                     hubs={filteredHubs}
                     allHubs={hubs}

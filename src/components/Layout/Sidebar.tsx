@@ -38,27 +38,27 @@ interface SidebarProps {
 
 export function Sidebar({ activePage, onNavigate }: SidebarProps) {
   return (
-    <aside className="flex w-full shrink-0 flex-col bg-navy-950 px-3 py-3 text-slate-200 lg:h-screen lg:w-64 lg:px-4 lg:py-5">
+    <aside className="flex w-full shrink-0 flex-col bg-navy-950 px-2 py-2 text-slate-200 sm:px-3 sm:py-3 lg:h-screen lg:w-64 lg:px-4 lg:py-5">
       <div className="flex items-center gap-3 px-1 lg:px-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-          <Truck size={22} />
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 lg:h-10 lg:w-10">
+          <Truck size={20} />
         </div>
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-blue-200">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blue-200 sm:text-sm">
             Lazada Logistics
           </p>
-          <p className="text-xs text-slate-400">Capacity Recovery</p>
+          <p className="hidden text-xs text-slate-400 sm:block">Capacity Recovery</p>
         </div>
       </div>
 
-      <nav className="dashboard-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1 lg:mt-8 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
+      <nav className="dashboard-scrollbar mt-2 flex gap-2 overflow-x-auto pb-1 lg:mt-8 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const active = item.label === activePage;
           return (
             <button
               key={item.label}
-              className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition lg:w-full lg:gap-3 ${
+              className={`flex shrink-0 items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-medium transition sm:text-sm lg:w-full lg:gap-3 lg:px-3 lg:py-2.5 ${
                 active
                   ? "bg-blue-600 text-white shadow-lg shadow-blue-950/30"
                   : "text-slate-300 hover:bg-navy-800 hover:text-white"
